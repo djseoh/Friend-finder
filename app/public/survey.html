@@ -12,15 +12,15 @@
     <h1>Survey</h1>
     <h2>Tell me about yourself</h2>
     <h4>Name</h4>
-    <input type="text" required>
+    <input type="text" id="name" required>
     <hr>
     <h4>Link to photo</h4>
-    <input type="text" required>
+    <input type="text" id="photo" required>
     <hr>
     
     <h4>Question 1:</h4>
     <p>You find it difficult to introduce yourself to other people.</p>
-    <select>
+    <select id="q1">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -31,7 +31,7 @@
     
     <h4>Question 2:</h4>
     <p>You often get so lost in thoughts that you ignore or forget your surroundings.</p>
-    <select>
+    <select id="q2">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -42,7 +42,7 @@
     
     <h4>Question 3:</h4>
     <p>You are usually highly motivated and energetic.</p>
-    <select>
+    <select id="q3">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -53,7 +53,7 @@
     
     <h4>Question 4:</h4>
     <p>You find it easy to stay relaxed even when there is some pressure.</p>
-    <select>
+    <select id="q4">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -64,7 +64,7 @@
     
     <h4>Question 5:</h4>
     <p>You rarely do something just out of sheer curiosity.</p>
-    <select>
+    <select id="q5">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -75,7 +75,7 @@
     
     <h4>Question 6:</h4>
     <p>An interesting book or a video game is often better than a social event.</p>
-    <select>
+    <select id="q6">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -86,7 +86,7 @@
     
     <h4>Question 7:</h4>
     <p>Being organized is more important to you than being adaptable.</p>
-    <select>
+    <select id="q7">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -97,7 +97,7 @@
    
     <h4>Question 8:</h4>
     <p>People can rarely upset you.</p>
-    <select>
+    <select id="q8">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -108,7 +108,7 @@
   
     <h4>Question 9:</h4>
     <p>In a discussion, truth should be more important than people’s sensitivities.</p>
-    <select>
+    <select id="q9">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -120,7 +120,7 @@
     <h4>Question 10:</h4>
     <p>Being able to develop a plan and stick to it is the most important part of every project.
         </p>
-    <select>
+    <select id="q10">
         <option value="">Select One</option>
         <option value="1">1 (Strongly Disagree)</option>
         <option value="2">2</option>
@@ -129,7 +129,36 @@
         <option value="5">5 (Strongly Agree)</option>
     </select>
    <hr>
-    <button class="btn" id="submit">Find a friend!</button>
+    <button class="btn" id="submit" data-toggle="modal" data-target="#myModal">Find a friend!</button>
+
+    
+<script type="text/javascript">
+$('#submit').on('click', function(event) {
+    event.preventDefault();
+    var newFriend = {
+        name: $('#name').val(),
+        photo: $('photo').val(),
+        scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+        ]
+    };
+});
+
+$.post('/api/characters', newFriend, function(data){
+    
+
+})
+</script>
+
 </body>
 
 </html>
